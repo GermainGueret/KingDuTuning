@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="accueilzone">
+   <div class="center-accueil">
+
+    <h1>DEFIEZ LES TUNEURS</h1>
+<div class="tableau-content">
+    <table class="table">
+        {% for joueur in joueurs if joueur.username != user.username %}
+            <tr>
+                <td>{{ joueur.username }} <span class="joueur-level"></span></td>
+                <td><a href="{{ path('creer_partie', {'joueur':joueur.id}) }}">DEFIER</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+       </div>
+    
+ <div class="center-text">
+    <a class="retour-lien" href="{{ path('joueur_homepage') }}">Retour</a>
+       </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,218 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: fr
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["locale"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+
+# Twig Configuration
+twig:
+    #form:
+        #resources: ['bootstrap_3_layout.html.twig']
+        #resources: ['bootstrap_3_horizontal_layout.html.twig']
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\Joueur
+    from_email:
+        address: "test@hotmail.fr"
+        sender_name: "test@hotmail.fr"
+    registration:
+            form:
+                type: AppBundle\Form\RegistrationType
+
+#easy_admin:
+    #entities:
+        #- AppBundle\Entity\Joueur
+        #- AppBundle\Entity\Cartes
+        #- AppBundle\Entity\Partie
+        #- AppBundle\Entity\Familles
+        #- AppBundle\Entity\Chat
+
+easy_admin:
+    site_name: 'Admin'
+
+    design:
+        theme: 'default'
+        brand_color: '#D98A01'
+        color_scheme: 'light'
+        menu:
+            - { label: 'Retour au site', route: 'joueur_homepage', icon: 'chevron-circle-left' }
+            - { label: 'Menu' }
+            - { label: 'Joueurs', entity: 'Joueur', icon: 'users' }
+            - { label: 'Parties', entity: 'Partie', icon: 'gamepad' }
+            - { label: 'Cartes', entity: 'Cartes', icon: 'ticket' }
+            - { label: 'Catégories', entity: 'Familles', icon: 'cubes' }
+            - { label: 'Chat', entity: 'Chat', icon: 'commenting' }
+
+    entities:
+        Joueur:
+            class: AppBundle\Entity\Joueur
+            label: 'Joueurs'
+            export_path: '%kernel.root_dir/../var/export/joueur'
+            password_encoding: { algorithm: 'bcrypt', cost: 12 }
+            list:
+                actions:
+                    - { name: 'show', icon: 'search', label: '' }
+                    - { name: 'edit', icon: 'pencil', label: '' }
+                    - { name: 'delete', icon: 'times', label: '' }
+                title: "Joueurs"
+                fields:
+                    - 'id'
+                    - 'username'
+                    - 'joueurNom'
+                    - 'joueurPrenom'
+                    - 'email'
+                    - 'enabled'
+                    - { property: 'last_login', type: 'datetime' }
+            show:
+                title: 'Joueur (%%entity_id%%)'
+                fields:
+                fields:
+                    - 'id'
+                    - 'username'
+                    - 'joueurNom'
+                    - 'joueurPrenom'
+                    - 'email'
+                    - { property: 'last_login', type: 'datetime' }
+                    - { property: 'parties', type: 'integer'}
+
+            edit:
+                title: 'Modifier le joueur (%%entity_id%%)'
+
+            form:
+                title: "Créer un joueur"
+                fields:
+                    - 'username'
+                    - { property: 'plainPassword', type: 'text', type_options: { required: false } }
+                    - 'email'
+                    - 'joueurNom'
+                    - 'joueurPrenom'
+                    - 'enabled'
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_MODERATOR': 'ROLE_MODERATOR', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+                    - { property: 'joueurHighscore', type_options: { required: false }}
+
+        Cartes:
+            class: AppBundle\Entity\Cartes
+            label: 'Cartes'
+            list:
+                actions:
+                    - { name: 'show', icon: 'search', label: '' }
+                    - { name: 'edit', icon: 'pencil', label: '' }
+                    - { name: 'delete', icon: 'times', label: '' }
+                title: "Cartes"
+                fields:
+                    - 'id'
+                    - 'carteValeur'
+                    - 'carteNom'
+                    - 'carteDescription'
+                    - 'carteTexte'
+                    - 'carteFamille'
+                    - 'carteExtra'
+            show:
+                title: 'Carte (%%entity_id%%)'
+            edit:
+                title: 'Modifier la carte (%%entity_id%%)'
+            form:
+                title: "Créer une carte"
+                fields:
+                    - { property: 'carteValeur', type: 'integer'}
+                    - { property: 'carteNom', type: 'text'}
+                    - { property: 'carteDescription', type: 'text'}
+                    - { property: 'carteTexte', type: 'text'}
+                    - { property: 'carteExtra'}
+                    - { property: 'carteImage', type: 'text', type_options: { required: false }}
+                    - { property: 'carteFamille', type_options: { required: false }}
+
+        Familles:
+            class: AppBundle\Entity\Familles
+            label: 'Catégories'
+            list:
+                actions:
+                    - { name: 'show', icon: 'search', label: 'Voir' }
+                    - { name: 'edit', icon: 'pencil', label: 'Modifier' }
+                    - { name: 'delete', icon: 'times', label: 'Supprimer' }
+                title: "Catégories"
+            show:
+                title: 'Catégorie (%%entity_id%%)'
+
+            edit:
+                title: 'Modifier la catégorie (%%entity_id%%)'
+
+        Partie:
+            class: AppBundle\Entity\Partie
+            label: 'Parties'
+            list:
+                actions:
+                    - { name: 'show', icon: 'search', label: 'Voir' }
+                    - { name: 'edit', icon: 'pencil', label: 'Modifier' }
+                    - { name: 'delete', icon: 'times', label: 'Supprimer' }
+                title: "Parties"
+            show:
+                title: 'Partie : (%%entity_id%%)'
+
+        Chat:
+            class: AppBundle\Entity\Chat

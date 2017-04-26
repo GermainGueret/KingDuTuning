@@ -1,0 +1,32 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<nav class="nav navbar-default navbar-fixed-top">
+             <div class="container-fluid">
+             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><img class="profil" href="../" src="{{ asset('assets/img/profil.png') }}"/></li>
+                    <li><a class="nom_joueur" href="../">{% block menu_pseudo %}{% endblock %}</a></li>
+                </ul>
+                <div class="nav navbar-right">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-menu-hamburger"></span>
+
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="http://149.91.88.165/jeu/profile/">Mon profil</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="http://149.91.88.165/jeu/logout/">Deconnexion</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+</nav>
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    {{ form_widget(form) }}
+    <div>
+        </br>
+        <input class="button" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}
+    <center><a class="boutons btn-flames" href="/jeu/profile">Retour</a></center>

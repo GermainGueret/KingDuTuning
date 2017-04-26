@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block menu_pseudo %}{% endblock %}
+
+{% block body %}
+
+    <div class="col-sm-12 container-fluid accueilzone">
+
+        <div class="jeu content-vertical-align container-fluid text-center">
+            <div class="accueil-contenu">
+                <img class="profile-accueil" src="{{ asset('assets/img/avatar.png') }}">
+                <div class="nom-joueur">
+                    <h2>{{ user.username }}</h2>
+                </div>
+                    <li><a class="boutons btn-flames" href="{{ path('joueur_parties') }}">Mes parties</a></li>
+                    <li><a class="boutons btn-flames" href="{{ path('joueur_parties_add') }}">Nouvelle partie</a></li>
+                    <li><a class="boutons btn-flames" href="{{ path('classement') }}">Classement</a></li>
+                    <li><a href="http://149.91.88.165/promo">Accès au site promotion</a></li>
+            
+            </div>
+           
+
+        </div>
+
+        {#<div class="container-fluid mainzone">#}
+
+            {#<div class="row">#}
+
+                {# MAIN #}
+                {#<div class="col-sm-10 main">#}
+
+                    {# UNE PIOCHE #}
+                    {#<div class="carte">#}
+                        {#<h3>3</h3>#}
+                        {#<h5 class="text-center">Famille 1</h5>#}
+                    {#</div>#}
+
+                    {# UNE PIOCHE #}
+                    {#<div class="carte">#}
+                        {#<h3>10</h3>#}
+                        {#<h5 class="text-center">Famille 3</h5>#}
+                    {#</div>#}
+
+                    {# UNE PIOCHE #}
+                    {#<div class="carte">#}
+                        {#<h3>9</h3>#}
+                        {#<h5 class="text-center">Famille 3</h5>#}
+                    {#</div>#}
+
+                    {# UNE PIOCHE #}
+                    {#<div class="carte">#}
+                        {#<h3>2</h3>#}
+                        {#<h5 class="text-center">Famille 5</h5>#}
+                    {#</div>#}
+
+                    {# UNE PIOCHE #}
+                    {#<div class="carte">#}
+                        {#<h3>6</h3>#}
+                        {#<h5 class="text-center">Famille 4</h5>#}
+                    {#</div>#}
+
+                    {# UNE PIOCHE #}
+                    {#<div class="carte">#}
+                        {#<h3>6</h3>#}
+                        {#<h5 class="text-center">Famille 2</h5>#}
+                    {#</div>#}
+
+                    {# UNE PIOCHE #}
+                    {#<div class="carte">#}
+                        {#<h3>1</h3>#}
+                        {#<h5 class="text-center">Famille 3</h5>#}
+                    {#</div>#}
+
+                {#</div>#}
+
+                {# PIOCHE #}
+                {#<div class="col-sm-2 pioche">#}
+
+                    {#<form method="post">#}
+                        {#<input type="submit" class="carte" name="piocher" value="Piocher"/>#}
+                    {#</form>#}
+
+                {#</div>#}
+
+            {#</div>#}
+
+        {#</div>#}
+
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}

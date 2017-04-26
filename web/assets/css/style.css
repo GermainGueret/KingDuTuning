@@ -1,0 +1,544 @@
+/* NOUVELLE VERSION */
+
+/* NAVBAR */
+
+.navbar-default {
+    background-image: url(../img/bouton_flamme.png);
+}
+/* POP UP */
+
+    .modal-main .modal,
+    .modal-defausse .modal{
+       width: 83.33333333%;
+    }
+
+    .modal-main .modal-dialog,
+    .modal-defausse .modal-dialog{
+        width: 700px;
+        margin: 70px auto;
+        transition: transform .3s ease-out;
+    }
+    
+    .modal-main .modal-title,
+    .modal-defausse .modal-title{
+        font-family: 'nhlflames', serif;
+        color: black;
+        font-size: 35px;
+    }
+
+/* GENERAL */
+
+    html, body, [canvas=container], [off-canvas] {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    .text-color-white{
+        color: white;
+    }
+
+.accueil-contenu li {
+    text-decoration: none;
+    list-style: none;
+}
+.accueil-contenu a {
+    color: white !important;
+    text-decoration: none;
+}
+.accueil-contenu a:hover {
+    color: lightslategrey;
+    text-decoration: none !important;
+}
+.accueil-contenu a:active {
+    text-decoration: none !important;
+}
+@font-face {
+    font-family: nhlflames;
+    src: url(../fonts/nhlflames.ttf);
+}
+@font-face {
+    font-family: Vorname;
+    src: url(../fonts/Vorname.ttf);
+}
+.profil-accueil{
+    width: 20%;
+    height: 20%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+.profil {
+    margin-top: 8px;
+}
+.joueur-level {
+    color: darkred;
+}
+.boutons{
+    font-family: 'nhlflames', serif;
+    font-size: 2rem;
+    padding: 13px;
+    width: 35%;
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn-flames {
+    background-image: url(../img/bouton_flamme.png) !important;
+    background-size: contain;
+    padding: 20px;
+    filter: grayscale(50%);
+}
+.btn-flames:hover {
+    filter: grayscale(0%);
+    text-decoration: none;
+    color: darkred;
+}
+.accueil-contenu{
+    width: 100%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.accueil-contenu h2 {
+    color: white;
+}
+.accueilzone{
+    background-image: url('../img/background_01.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height:100%;
+    position:relative;
+}
+
+.jeuzone{
+    background-image: url('../img/fond_jeu.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height:100%;
+    position:relative;
+}
+/* ZONE SIDEBAR */ 
+.tabzone{
+    background-color: whitesmoke;
+    height:100%;
+    z-index: 5000;
+}
+.tabzone li a img {
+   width: 100%;
+}
+.tabzone li {
+    display: inline-block;
+    width: 33.33%;
+}
+.tabzone li a {
+    text-align: center;
+}
+
+#home {
+    text-align: center;
+}
+
+#home h3 {
+    font-family: 'nhlflames', serif;
+    color: darkred;
+    font-size: 3rem;
+}
+#home h4 {
+    font-family: 'nhlflames', serif;
+    color: black;
+    
+}
+.etat_tour {
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+}
+.etat_tour h3 {
+    color: darkred;
+    background-color: yellow;
+}
+.etat_tour h4 {
+    font-size: 2.5rem;
+    padding-bottom: 20px;
+}
+
+/* FIN ZONE SIDEBAR */
+.fixed-bottom {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+.partie-fin {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    position: absolute;
+    z-index: 9999;
+}
+.jeu{
+    padding: 25px 0px;
+    position: relative;
+    height: 80%;
+}
+
+.content-vertical-align {
+        
+}
+
+.terrainzone{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.categoriezone{
+    width: 20%;
+    float: left;
+}
+
+.mainzone{
+    position: relative;
+    height: 20%;
+    background-image: url('../img/fond_full_jeu.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 10px 0px;
+}
+
+.pioche{
+    position: relative;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 100%;
+}
+@media screen and (max-width: 1200px) {
+    .carte-main, .carte-image-main, .carte{
+        width: 70px !important;
+        height: 90px !important;
+    }
+    .carte-main:hover{
+    filter: blur(0);
+    transform: scale(20);
+    transform: translateY(-70px) !important;
+    transition: 0.50s ease-in-out;
+    height: 138px !important;
+    width: 100px !important;
+}
+}
+.main {
+    transition: 1s ease-in-out;
+}
+.main:hover{
+    position: relative;
+    height: 100%;
+    filter: blur(25);
+    transition: 1s ease-in-out;
+}
+
+.carte-main{
+    transition: 1s ease-in-out;
+}
+
+.carte-main:hover{
+    filter: blur(0);
+    transform: scale(20);
+    transform: translateY(-90px);
+    transition: 0.50s ease-in-out;
+    height: 180px;
+    width: 140px;
+}
+
+.carte-image-main{
+    position: relative;
+    height: 105px;
+    width: 85px;
+    float: left;
+    margin-left: 5px;
+     margin-right: 5px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+
+.carte-image-terrain{
+    position: relative;
+    height: 60px;
+    width: 50px;
+    margin-top: -50px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carte-image-terrain-2{
+    position: relative;
+    height: 60px;
+    width: 50px;
+    margin-top: -50px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carte-image-defausse{
+    position: relative;
+    height: 60px;
+    width: 50px;
+    margin-top: -59px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carte-image-main img{
+    width: 100%;
+    height:100%;
+}
+
+.carte-image-terrain img{
+    width: 100%;
+    height:100%;
+}
+
+.carte-image-terrain-2 img{
+    width: 100%;
+    height:100%;
+    -webkit-transform: rotate(-180deg); /* Pour Google Chrome */
+    -moz-transform: rotate(-180deg); /* Pour Mozilla Firefox */
+    transform: rotate(-180deg);
+}
+
+.carte-image-defausse img{
+    width: 100%;
+    height:100%;
+}
+
+.carte{
+     position: relative;
+     background-color:#D98A01;
+     border: solid 2px black;
+     border-radius: 10px;
+     height: 105px;
+     width: 85px;
+     float: left;
+     margin-left: 5px;
+     margin-right: 5px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     padding: 5px;
+ }
+
+.carte h2{
+    position: relative;
+    background-color: black;
+    color: #fff;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 20px;
+    width: 22px;
+    font-size: 13px;
+}
+
+.carte h3{
+    position: relative;
+    background-color: black;
+    color: #D98A01;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 20px;
+    width: 22px;
+    font-size: 13px;
+}
+
+.carte h5{
+    text-align: center;
+    font-size: 11px;
+    position: relative;
+    bottom: 0;
+}
+
+.carte p{
+    margin-top: 7px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.carte2{
+    position: relative;
+    background-color:#D98A01;
+    border: solid 1px black;
+    border-radius: 4px;
+    height: 50px;
+    width: 40px;
+    margin-top: -37px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carte2 h2{
+    position: relative;
+    background-color: black;
+    color: #fff;
+    top: 2px;
+    left: 2px;
+    margin: 0px;
+    text-align: center;
+    padding: 2px 2px;
+    border-radius: 20px;
+    width: 18px;
+    font-size: 12px;
+}
+
+.carte2 h3{
+    position: relative;
+    background-color: black;
+    color: #D98A01;
+    top: 2px;
+    left: 2px;
+    margin: 0px;
+    text-align: center;
+    padding: 2px 2px;
+    border-radius: 20px;
+    width: 18px;
+    font-size: 12px;
+}
+
+.carte3{
+    position: relative;
+    background-color:#D98A01;
+    border: solid 1px black;
+    border-radius: 4px;
+    height: 50px;
+    width: 40px;
+    margin-top: -49px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carte3 h2{
+    position: relative;
+    background-color: black;
+    color: #fff;
+    top: 2px;
+    left: 2px;
+    margin: 0px;
+    text-align: center;
+    padding: 2px 2px;
+    border-radius: 20px;
+    width: 18px;
+    font-size: 12px;
+}
+
+.carte3 h3{
+    position: relative;
+    background-color: black;
+    color: #D98A01;
+    top: 2px;
+    left: 2px;
+    margin: 0px;
+    text-align: center;
+    padding: 2px 2px;
+    border-radius: 20px;
+    width: 18px;
+    font-size: 12px;
+}
+
+.carte-off {
+    filter: brightness(70%);
+}
+/* MES PARTIES, ADD PARTIES */
+.center-accueil {
+    padding-top: 6%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.center-accueil h1 {
+    color: white;
+    text-shadow: 1px 1px 1px #222;
+    text-align: center;
+    font-family: 'nhlflames', serif;
+    border-bottom: 5px solid darkred;
+}
+.center-accueil h2 {
+    color: white;
+    text-shadow: 1px 1px 1px darkred;
+    text-align: center;
+}
+.id-partie {
+    font-family: 'Vorname';
+    color: white;
+    font-size: 3rem;
+   
+}
+.center-accueil ul li {
+    list-style: none;
+}
+.center-accueil ul li a {
+    color: white;
+    font-size: 2rem;
+}
+.center-accueil ul li a:hover {
+    text-decoration: none;
+    color: darkred;
+}
+.center-accueil td {
+    color: white;
+}
+.center-accueil td a {
+    color: darkred;
+    text-shadow: 1px 1px 1px white;
+    font-family: 'nhlflames', serif;
+    font-size: 2.5rem;
+}
+.center-accueil td a:hover {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    text-decoration: none;
+}
+.retour-lien {
+    color: black;
+    text-shadow: 1px 1px 1px white;
+    font-family: 'nhlflames', serif;
+    font-size: 2.5rem;
+}
+.retour-lien:hover {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    
+}
+.tableau-content {
+    width: 80%;
+    margin: 0 auto;
+    height: 55vh;
+    overflow-y: scroll;
+}
+.tableau-content table {
+    overflow: scroll;
+}
+.center-text {
+    text-align: center;
+}

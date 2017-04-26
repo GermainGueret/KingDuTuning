@@ -1,0 +1,54 @@
+@keyframes neon {
+    0% {
+        text-shadow: none;
+    }
+    15% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 40px #00ff7f, 0 0 70px #00ff7f, 0 0 80px #00ff7f;
+    }
+    35% {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 15px rgba(255, 255, 255, 1), 0 0 40px #00ff7f, 0 0 70px #00ff7f, 0 0 80px #00ff7f;
+    }
+    40% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 40px #00ff7f, 0 0 70px #00ff7f, 0 0 80px #00ff7f;
+    }
+    50%{
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1),
+    }
+    52% {
+        text-shadow: none;
+    }
+    60% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 40px #00d4ff, 0 0 70px #00a1ff, 0 0 80px #00a1ff, 0 0 100px #00a1ff;
+    }
+    75% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 40px #00d4ff, 0 0 70px #00a1ff, 0 0 80px #00a1ff, 0 0 100px #00a1ff;
+    }
+    95% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 40px #00d4ff, 0 0 70px #00a1ff, 0 0 80px #00a1ff, 0 0 100px #00a1ff;
+    }
+    100% {
+        text-shadow: none;
+    }
+}
+.main-logo {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    font: normal 60px/normal "Warnes", Helvetica, sans-serif;
+    color: rgba(255,255,255,1) !important;
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    white-space: pre;
+    animation: neon 5s infinite;
+    transition: ease-in-out;
+
+
+}
+
+body {
+    height: 100vh;
+}

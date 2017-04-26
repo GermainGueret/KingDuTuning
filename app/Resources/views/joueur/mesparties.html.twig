@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="accueilzone">
+   <div class="center-accueil">
+    <h1>MES PARTIES EN COURS</h1>
+    <div class="tableau-content">
+        <ul>
+            {% for partie in user.parties %}
+            {% for partie in partie %}
+
+                {% if user.id == partie.partieJ1.id %}
+                    <li><span class="id-partie">{{ partie.id }}</span> - <a href="{{ path('afficher_partie', {'id':partie.id}) }}">Partie avec {{ partie.partieJ2.username }}</a></li>
+                {% elseif user.id == partie.partieJ2.id %}
+                    <li><span class="id-partie">{{ partie.id }}</span> - <a href="{{ path('afficher_partie', {'id':partie.id}) }}">Partie avec {{ partie.partieJ1.username }}</a></li>
+                {% endif %}
+
+            {% else %}
+
+                Aucune partie en cours. <a href="{{ path('joueur_parties_add') }}">Créer une partie</a>
+
+            {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="center-text">
+        <a class="retour-lien" href="{{ path('joueur_homepage') }}">Retour</a>
+    </div>
+    
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+
+        <script src="{{ asset('assets/js/jquery.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    </head>
+
+    <body>
+        <div>
+            {# SI CONNECTE #}
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                <div class="login-page">
+
+                    <div class="form">
+
+                       <div class="login-form">
+
+                           <h2 class="text-center">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</h2>
+
+                           <br>
+
+                           {% block fos_user_content_info %}
+                           {% endblock fos_user_content_info %}
+
+                           <br>
+                           <a class="text-center logout" href="{{ path('fos_user_security_logout') }}">
+                               <h4>{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</h4>
+                           </a>
+
+                       </div>
+
+                    </div>
+
+                </div>
+
+
+            {# SI NON CONNECTE #}
+            {% else %}
+
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+
+
+    </body>
+</html>
+
+

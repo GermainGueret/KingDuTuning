@@ -1,0 +1,117 @@
+<!Doctype html>
+<html lang="fr">
+<head>
+    <title>King du Parking</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/slidebars.css') }}">
+</head>
+
+<body>
+    <nav class="nav navbar-default navbar-fixed-top">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><img class="profil" src="assets/img/profil.png" /></li>
+                    <li><a class="nom_joueur" href="#">Nom du joueur</a></li>
+                    <li>
+                        <p>NIV.<span class="level">666</span></p>
+                    </li>
+                </ul>
+                <ul class="nav navbar-right">
+                    <li>
+                        <a href="#"><img class="reglage" src="assets/img/reglage.png"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+    <div class="col-sm-10 jeuzone">
+
+        <div class="jeu text-center">
+
+            <a href=""><button class="btn btn-primary">Go</button></a>
+
+
+        </div>
+
+        <div class="container-fluid mainzone">
+
+            <div class="row">
+
+                {# MAIN #}
+                <div class="col-sm-10 main">
+
+                    {# UNE PIOCHE #}
+                    <div class="carte">
+                        <h3>3</h3>
+                        <h5 class="text-center">Famille 1</h5>
+                    </div>
+
+                    {# UNE PIOCHE #}
+                    <div class="carte">
+                        <h3>10</h3>
+                        <h5 class="text-center">Famille 3</h5>
+                    </div>
+
+                    {# UNE PIOCHE #}
+                    <div class="carte">
+                        <h3>9</h3>
+                        <h5 class="text-center">Famille 3</h5>
+                    </div>
+
+                    {# UNE PIOCHE #}
+                    <div class="carte">
+                        <h3>2</h3>
+                        <h5 class="text-center">Famille 5</h5>
+                    </div>
+
+                    {# UNE PIOCHE #}
+                    <div class="carte">
+                        <h3>6</h3>
+                        <h5 class="text-center">Famille 4</h5>
+                    </div>
+
+                    {# UNE PIOCHE #}
+                    <div class="carte">
+                        <h3>6</h3>
+                        <h5 class="text-center">Famille 2</h5>
+                    </div>
+
+                    {# UNE PIOCHE #}
+                    <div class="carte">
+                        <h3>1</h3>
+                        <h5 class="text-center">Famille 3</h5>
+                    </div>
+
+                </div>
+
+                {# PIOCHE #}
+                <div class="col-sm-2 pioche">
+
+                        <form method="post">
+                            <input type="submit" class="carte" name="piocher" value="Piocher"/>
+                        </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-sm-2 tabzone">
+
+    </div>
+
+    <script src="{{ asset('assets/js/slidebars.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+
+</body>
+
+</html>

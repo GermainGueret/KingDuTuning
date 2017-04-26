@@ -1,0 +1,690 @@
+{% extends 'base.html.twig' %}
+
+{% block menu_pseudo %}
+    {% if useractif.id == partie.partieJ1.id %}
+        {{ partie.partieJ1.username }}
+    {% elseif useractif.id == partie.partieJ2.id %}
+        {{ partie.partieJ2.username }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+
+{# POP UP DE LA MAIN #}
+    {% for carte in variablePartie.mesCartes %}
+    <!-- Grid modal -->
+    <div class="modal-add modal-main">
+    <div class="modal fade" id="modal-main-{{ cartes2[carte].id }}" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center" id="gridSystemModalLabel">{{ cartes2[carte].carteDescription }}</h2>
+    </div>
+
+    <div class="modal-body">
+
+        <form class="headerSearch form-group" action="" method="post" id="add_music">
+
+            <div class="row body">
+
+                <div class="col-sm-offset-1 col-sm-5">
+                    <img src="{{ asset('assets/img/cartes/'~cartes2[carte].carteImage~'.png') }}" width="80%"><br><br>
+                </div>
+
+                <div class="col-sm-5">
+
+                    <br>
+                    Id : {{ cartes2[carte].id }} <br>
+                    Valeur : {{ cartes2[carte].carteValeur }} <br>
+                    Famille : {{ cartes2[carte].carteFamille }}
+
+                    <input type="hidden" name="cartePoserId" value="{{ cartes2[carte].id }}">
+                    <input type="hidden" name="cartePoserCategorie" value="{{ cartes2[carte].carteFamille.id }}">
+                    <input type="hidden" name="cartePoserValeur" value="{{ cartes2[carte].carteValeur }}">
+                    <input type="hidden" name="cartePoserExtra" value="{{ cartes2[carte].carteExtra }}">
+
+                    <br><br>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-delete" data-dismiss="modal">Fermer</button>
+                {#<button type="button" class="btn btn-primary">Publier</button>#}
+                {% if variablePartie.montour == true %}
+
+                    {% if variablePartie.poseActive == true %}
+                        {# ACTIF #}
+                        <input type="submit" name="poser" value="Poser" class="btn btn-primary" id="submit"/>
+                        <input type="submit" value="Défausser" name="defausser" class="btn btn-primary" id="submit">
+                    {% else %}
+                        {# NON ACTIF #}
+                        <input type="submit" name="poser" value="Poser" class="btn btn-danger" id="submit" disabled/>
+                        <input type="submit" value="Défausser" name="defausser" class="btn btn-danger" id="submit" disabled>
+                    {% endif %}
+
+                {% else %}
+                    {# NON ACTIF #}
+                    <input type="submit" name="poser" value="Poser" class="btn btn-danger" id="submit" disabled/>
+                    <input type="submit" value="Défausser" name="defausser" class="btn btn-danger" id="submit" disabled>
+                {% endif %}
+            </div>
+
+        </form>
+    </div> {# modal-body #}
+
+
+    </div>{# modal-content #}
+    </div>{# modal-dialog #}
+    </div>{# modal-fade #}
+    </div>{# modal-add #}
+    {% endfor %}
+
+
+{# POP UP DE LA DEFAUSSE #}
+    {% for carteDefausse in variablePartie.partieDefausse %}
+        {% for carte in carteDefausse %}
+        <!-- Grid modal -->
+        <div class="modal-add modal-defausse">
+        <div class="modal fade" id="modal-defausse-{{ cartes2[carte].id }}" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title text-center" id="gridSystemModalLabel">{{ cartes2[carte].carteDescription }}</h2>
+        </div>
+
+        <div class="modal-body">
+
+            <form class="headerSearch form-group" action="" method="post" id="add_music">
+
+                <div class="row body">
+
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <img src="{{ asset('assets/img/cartes/'~cartes2[carte].carteImage~'.png') }}" width="80%"><br><br>
+                    </div>
+
+                    <div class="col-sm-5">
+
+                        <br>
+                        Id : {{ cartes2[carte].id }} <br>
+                        Valeur : {{ cartes2[carte].carteValeur }} <br>
+                        Famille : {{ cartes2[carte].carteFamille }}
+
+                        <input type="hidden" name="recupererId" value="{{ cartes2[carte].id }}">
+                        <input type="hidden" name="recupererCategorieId" value="{{ cartes2[carte].carteFamille.id }}">
+
+                        <br><br>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-delete" data-dismiss="modal">Fermer</button>
+                    {#<button type="button" class="btn btn-primary">Publier</button>#}
+                    {% if variablePartie.montour == true %}
+
+                        {% if variablePartie.poseActive == false %}
+                            {# ACTIF #}
+                            <input type="submit" value="Recuperer" name="recuperer" class="btn btn-primary" id="submit"/>
+                        {% else %}
+                            {# NON ACTIF #}
+                            <input type="submit" value="Recuperer" name="recuperer" class="btn btn-danger" id="submit" disabled/>
+                        {% endif %}
+
+                    {% else %}
+                        {# NON ACTIF #}
+                        <input type="submit" value="Recuperer" name="recuperer" class="btn btn-danger" id="submit" disabled/>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div> {# modal-body #}
+
+
+        </div>{# modal-content #}
+        </div>{# modal-dialog #}
+        </div>{# modal-fade #}
+        </div>{# modal-add #}
+        {% endfor %}
+    {% endfor %}
+
+
+    {# SI LA PARTIE EST FINI #}
+    {% if variablePartie.partieFin %}
+        <div class="partie-fin">
+            <div class="container-fluid">
+
+                <br><br>
+                <h1 class="text-color-white text-center">La partie est finie !</h1>
+                <br><br>
+
+                <div class="row">
+                    <div class="col-sm-4 text-center">
+                        <br>
+                        {% if useractif.id == partie.partieJ1.id %}
+                            <h4 class="text-color-white">{{ partie.partieJ1.username }} : {{ variablePartie.scoreJ1 }}</h4>
+                        {% elseif useractif.id == partie.partieJ2.id %}
+                            <h4 class="text-color-white">{{ partie.partieJ2.username }} : {{ variablePartie.scoreJ2 }}</h4>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-sm-4 text-center">
+                        {% if variablePartie.scoreJ1 > variablePartie.scoreJ2 %}
+                            <h2 class="text-color-white text-center">{{ partie.partieJ1.username }} gagne !</h2>
+                        {% elseif variablePartie.scoreJ2 > variablePartie.scoreJ1 %}
+                            <h2 class="text-color-white text-center">{{ partie.partieJ2.username }} gagne !</h2>
+                        {% elseif variablePartie.scoreJ2 == variablePartie.scoreJ1 %}
+                            <h2 class="text-color-white text-center">{{ partie.partieJ1.username }} et {{ partie.partieJ2.username }} ont égalité !</h2>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-sm-4 text-center">
+                        <br>
+                        {% if useractif.id == partie.partieJ1.id %}
+                            <h4 class="text-color-white">{{ partie.partieJ2.username }} : {{ variablePartie.scoreJ2 }}</h4>
+                        {% elseif useractif.id == partie.partieJ2.id %}
+                            <h4 class="text-color-white">{{ partie.partieJ1.username }} : {{ variablePartie.scoreJ1 }}</h4>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {#{% if variablePartie.newBestScore == true %}#}
+                    {#<div class="row text-center">#}
+                        {#<br><br>#}
+                        {# <h3 class="text-color-white">Vous avez un nouveau record !</h3> #}
+                    {#</div>#}
+                {#{% endif %}#}
+
+                <div class="row text-center fixed-bottom">
+                    <li><a class="boutons btn-flames" href="{{ path('joueur_homepage') }}">Accueil</a></li>
+                    <li><a class="boutons btn-flames" href="{{ path('joueur_parties') }}">Mes parties</a></li>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+
+
+        <div class="col-sm-10 jeuzone">
+
+            {# JEU ZONE #}
+            <div class="jeu container-fluid">
+
+                {# TERRAIN J2 #}
+                <div class="row terrainzone">
+
+                   <!-- {% if variablePartie.montour == true %}
+                        <h4>C'est votre tour</h4>
+                    {% else %}
+                        <h4>C'est le tour de l'adversaire</h4>
+                    {% endif %}-->
+
+                    <br>
+                    <h3 class="text-color-white text-center">Terrain de l'adversaire</h3>
+                    <br><br>
+
+                    {% if variablePartie.adversaireTerrain %}
+
+                        {#{{ dump(variablePartie.adversaireTerrain) }}#}
+                        {% for cartesTerrain in variablePartie.adversaireTerrain %}
+                            <div class="categoriezone" >
+                                {#|{{ key }}|#}
+
+                                {% for carte in cartesTerrain %}
+
+
+
+                                     {% if loop.last %}
+
+                                        {% for carte in carte|slice(0, 1) %}
+
+                                            <h4 class="text-center">{{ carte }}</h4>
+                                        {% endfor %}
+
+                                     {% else %}
+                                            {% for carte in carte|slice(0, 1) %}
+
+                                                {% if cartes2[carte].carteImage %}
+                                                    <div class="carte-image-terrain-2">
+                                                        <img src="{{ asset('assets/img/cartes/'~cartes2[carte].carteImage~'.png') }}" alt="">
+                                                    </div>
+                                                {% else %}
+                                                    <div class="carte2">
+                                                        {% if cartes2[carte].carteExtra == true %}
+                                                            <h2>x</h2>
+                                                        {% else %}
+                                                            <h3>{{ cartes2[carte].carteValeur }}</h3>
+                                                        {% endif %}
+                                                        {#<p class="text-center">{{ cartes2[carte].carteNom }}</p>#}
+                                                        {#<h5 class="text-center">{{ cartes2[carte].carteFamille }}</h5>#}
+                                                    </div>
+                                                {% endif %}
+
+                                            {% endfor %}
+                                     {% endif %}
+
+                                {% else %}
+                                    <div class="carte2 carte-off"></div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                    {% else %}
+                        <div class="carte2 carte-off"></div>
+                    {% endif %}
+
+                </div>
+
+                {# DEFAUSSE #}
+                <div class="row terrainzone">
+
+                    <h3 class="text-color-white text-center">Defausse</h3>
+                    <br><br>
+
+                    {% if variablePartie.partieDefausse %}
+
+                        {#{{ dump(variablePartie.partieDefausse) }}#}
+
+                            {% for key, cartesDefausse in variablePartie.partieDefausse %}
+                                {#|{{ key }}|#}
+                                <div class="categoriezone" >
+
+                                    {% for carte in cartesDefausse %}
+
+                                        {% if cartes2[carte].carteImage %}
+                                            <a href="#" data-toggle="modal" data-target="#modal-defausse-{{ cartes2[carte].id }}">
+                                                <div class="carte-image-defausse" >
+                                                    <img src="{{ asset('assets/img/cartes/'~cartes2[carte].carteImage~'.png') }}" alt="">
+                                                </div>
+                                            </a>
+                                        {% else %}
+
+                                            <a href="#" data-toggle="modal" data-target="#modal-defausse-{{ cartes2[carte].id }}">
+                                                <div class="carte3">
+                                                    {% if cartes2[carte].carteExtra == true %}
+                                                        <h2>x</h2>
+                                                    {% else %}
+                                                        <h3>{{ cartes2[carte].carteValeur }}</h3>
+                                                    {% endif %}
+                                                </div>
+                                            </a>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <div class="carte3 carte-off"></div>
+                                    {% endfor %}
+
+                                </div>
+
+                            {% endfor %}
+
+
+                    {% else %}
+                        <div class="carte3 carte-off"></div>
+                    {% endif %}
+
+                </div>
+
+                {# TERRAIN J1 #}
+                <div class="row terrainzone">
+
+                    <h3 class="text-color-white text-center">Mon terrain</h3>
+                    <br><br>
+
+                    {#{{ dump(variablePartie.adversaireTerrain) }}#}
+                    {% for cartesTerrain in variablePartie.monTerrain %}
+                        <div class="categoriezone" >
+                            {#|{{ key }}|#}
+
+                            {% for carte in cartesTerrain %}
+
+
+
+                                 {% if loop.last %}
+
+                                    {% for carte in carte|slice(0, 1) %}
+
+                                        <h4 class="text-center">{{ carte }}</h4>
+                                    {% endfor %}
+
+                                 {% else %}
+                                    {% for carte in carte|slice(0, 1) %}
+
+                                        {% if cartes2[carte].carteImage %}
+                                            <div class="carte-image-terrain">
+                                                <img src="{{ asset('assets/img/cartes/'~cartes2[carte].carteImage~'.png') }}" alt="">
+                                            </div>
+                                        {% else %}
+                                            <div class="carte2">
+                                                {% if cartes2[carte].carteExtra == true %}
+                                                    <h2>x</h2>
+                                                {% else %}
+                                                    <h3>{{ cartes2[carte].carteValeur }}</h3>
+                                                {% endif %}
+                                                {#<p class="text-center">{{ cartes2[carte].carteNom }}</p>#}
+                                                {#<h5 class="text-center">{{ cartes2[carte].carteFamille }}</h5>#}
+                                            </div>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                 {% endif %}
+
+                            {% else %}
+                                <div class="carte2 carte-off"></div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+            {# FIN JEU ZONE #}
+
+            {# MAIN ZONE #}
+            <div class="container-fluid mainzone">
+
+                <div class="row">
+
+                    {# MAIN #}
+                    <div class="col-sm-10 main">
+
+                        {% for carte in variablePartie.mesCartes %}
+
+                            <form method="post" class="text-center">
+
+                                {% if cartes2[carte].carteImage %}
+                                    <a href="#" class="carte-main carte-image-main" data-toggle="modal" data-target="#modal-main-{{ cartes2[carte].id }}">
+                                        <img src="{{ asset('assets/img/cartes/'~cartes2[carte].carteImage~'.png') }}" alt="">
+                                    </a>
+                                {% else %}
+                                    <a href="#" class="carte-main carte" data-toggle="modal" data-target="#modal-main-{{ cartes2[carte].id }}">
+                                        <h3>{{ cartes2[carte].carteValeur }}</h3>
+                                        <h5 class="text-center">{{ cartes2[carte].carteFamille }}</h5>
+
+
+                                        {#<input type="hidden" name="cartePoserId" value="{{ cartes2[carte].id }}">#}
+                                        {#<input type="hidden" name="cartePoserCategorie" value="{{ cartes2[carte].carteFamille.id }}">#}
+                                        {#<input type="hidden" name="cartePoserValeur" value="{{ cartes2[carte].carteValeur }}">#}
+                                        {#<input type="hidden" name="cartePoserExtra" value="{{ cartes2[carte].carteExtra }}">#}
+
+                                        {#{% if variablePartie.montour == true %}#}
+                                            {#{% if variablePartie.poseActive == true %}#}
+                                                {#<input type="submit" name="poser" value="Poser"/>#}
+                                                {#<input type="submit" value="defausser" name="defausser">#}
+                                            {#{% endif %}#}
+                                        {#{% endif %}#}
+                                    </a>
+                                {% endif %}
+
+                            </form>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {# PIOCHE #}
+                    <div class="col-sm-2 container-fluid pioche">
+
+                        {% if variablePartie.montour == true %}
+                            {% if variablePartie.poseActive == true %}
+                                <form method="post">
+                                    <input type="submit" class="carte carte-off" name="piocher" value="{{ variablePartie.carteRestante }}" disabled/>
+                                </form>
+                            {% elseif variablePartie.poseActive == false %}
+                                <form method="post">
+                                    <input type="submit" class="carte" name="piocher" value="{{ variablePartie.carteRestante }}"/>
+                                </form>
+                            {% endif %}
+                        {% else %}
+                            <form method="post">
+                                <input type="submit" class="carte carte-off" name="piocher" value="{{ variablePartie.carteRestante }}" disabled/>
+                            </form>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <div class="col-sm-2 tabzone">
+
+        <div class="container-fluid">
+            <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#home"><img src="{{ asset('assets/img/icons/profile.png') }}" class="icons_menu"></a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#menu1"><img src="{{ asset('assets/img/icons/message.png') }}" class="icons_menu"></a>
+            </li>
+            {#<li>#}
+                {#<a data-toggle="tab" href="#menu2"><img src="{{ asset('assets/img/icons/music.png') }}" class="icons_menu"></a>#}
+            {#</li>#}
+
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="active tab-pane">
+                <div class="row">
+                {% if useractif.id == partie.partieJ1.id %}
+
+                    <h3> {{ partie.partieJ1.username }} : {{ variablePartie.scoreJ1 }}</h3>
+                    <h4>VS.</h4>
+                    <h3> {{ partie.partieJ2.username }} : {{ variablePartie.scoreJ2 }}</h3>
+
+                {% elseif useractif.id == partie.partieJ2.id %}
+
+                    <h3>{{ partie.partieJ2.username }} : {{ variablePartie.scoreJ2 }} </h3>
+                    <h4>VS. </h4>
+                    <h3>{{ partie.partieJ1.username }} : {{ variablePartie.scoreJ1 }}</h3>
+
+                {% endif %}
+                </div>
+                <div class="container-fluid etat_tour">
+                {% if variablePartie.partieFin %}
+                    <h3 class="text-center">Fin</h3>
+                {% else %}
+                    {% if variablePartie.montour == true %}
+                        <h3>C'est votre tour</h3>
+                    {% else %}
+                        <h4>C'est le tour de l'adversaire</h4>
+                    {% endif %}
+                {% endif %}
+                </div>
+                <div class="row">
+                <br><br><br>
+                <h4>Pioche : {{ variablePartie.carteRestante }} cartes</h4>
+
+            </div>
+
+            </div>
+            <div id="menu1" class="tab-pane fade">
+
+                <div id="zone-de-chat" class="container-fluid" style="height: 80vh; overflow-y: scroll; overflow-x : hidden" width="95%">
+                    {% for chat in variablePartie.chat %}
+
+                        {% if chat.chatJoueur.id == useractif.id %}
+                            <p style="clear: right; max-width: 100%;"><b>{{ chat.chatJoueur }}</b> :
+                            </br><span style="color: #1228B4">{{ chat.chatMessage }}</span></p><br>
+                        {% else %}
+                            <p style="float: right; clear: right; max-width: 100%;"><b>{{ chat.chatJoueur }}</b> :
+                            </br><span style="color: #1EA121">{{ chat.chatMessage }}</span></p><br>
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+
+                <div class="formulaire">
+
+                    <input type="hidden" name="pseudo" id="idJoueur" value="{{ variablePartie.me.id }}">
+                    <center><input type="text" name="text" id="text"  onkeyup="setNotif()" placeholder="Message" width="150%" ></center>
+                    <input type="hidden" name="envoyer" id="submit">
+
+                </div>
+
+            </div>
+            {#<div id="menu2" class="tab-pane fade">#}
+                {#<iframe width="100%" height="900" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/309687881&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>#}
+            {#</div>#}
+
+        </div>
+            
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script>
+        {% if variablePartie.montour != true %}
+        var montour = false;
+        {% else %}
+        var montour = true;
+        {% endif %}
+
+        if (montour != true ) {
+            setInterval(function () {
+                {# console.log('test'); #}
+                $.ajax({
+
+                    url: '{{ path('verif_partie', {'partie': variablePartie.partieId  }) }}',
+                    type: 'POST',
+
+                    success: function (code_html, statut) { // code_html contient le HTML renvoyé
+
+//                        console.log("ajax");
+                        if ( code_html.tour == {{ variablePartie.numJoueur }}){
+
+                            window.location.href = "{{ path('afficher_partie', {'id': variablePartie.partieId }  ) }}";
+                        }
+                    },
+                    error: function (resultat, statut, erreur) {
+
+                        console.log("error");
+
+                    }
+                });
+
+            }, 3000);
+        }
+    </script>
+
+    <script type="text/javascript">
+        function wizz(){
+            for (var i = 4 - 1; i >= 0; i--) {
+                $('.last').animate({ "left": "-=5px" }, 100 );
+                $('.last').animate({ "left": "+=5px" }, 100 );
+            }
+        }
+        function setNotif(){
+            $('head title').html('Chat instantanné');
+            new_message = 0;
+        }
+        var nb_message = null ;
+        var new_message=new Number();
+        var nb_1 = 1;
+        var auteurScroll;
+        var positionScroll;
+        var auteurScroll_detect;
+        var auto_id = setInterval(
+            function ()
+            {
+//              console.log('etape1');
+                $.getJSON('{{ path('get_last_id_chat', {'id':partie.id}) }}', function(result){
+//                console.log('etape2');
+                    $('#zone-de-chat p').removeClass( "last" );
+                    if (nb_message === null){
+                        if (result.last_id === null){
+                            nb_message = 0;
+                        }else {
+                            nb_message = result.last_id;
+                        }
+                    }
+                    if (nb_message < result.last_id && result.last_id != null) {
+//                    console.log('etape3');
+                        if(nb_message < result.last_id){
+                            nb_message +=1;
+                        }
+                        new_message += nb_1;
+                        // $('#zone-de-chat').load('recup.php');
+//                    $('#zone-de-chat').scroll(function(){
+//
+//                        positionScroll=$('#zone-de-chat').scrollTop();
+//                        auteurScroll=$('#zone-de-chat').prop('scrollHeight');
+//                        auteurScroll_detect=auteurScroll-550;
+//                    });
+                        $.getJSON('{{ path('get_chat', {'id':partie.id}) }}', function(result_m){
+                            if(result_m.joueurId != {{ useractif.id }} ){
+
+                                $('#zone-de-chat').append('<p style="float: right; clear: right; max-width: 100%;"><b>'+result_m.joueur+'</b></br> <span style="color: #1EA121">'+result_m.message+'</span></p><br>');
+
+                            }else{
+                                $('#zone-de-chat').append('<p style="clear: right; max-width: 100%;"><b>'+result_m.joueur+'</b></br> <span style="color: #1228B4">'+result_m.message+'</span></p><br>');
+
+                                setNotif();
+                            }
+                        });
+                        $('#zone-de-chat p').last().addClass( "last" );
+//                    if (auteurScroll_detect>positionScroll) {
+//
+//                    }else{
+//                        $('#zone-de-chat').scrollTo('.last');
+//                    }
+//                    setTimeout(wizz(), 800);
+//                    $('head title').html('('+new_message+') Chat instantanné');
+                        nb_message = result.last_id
+                    }
+                    $('#zone-de-chat p').last().addClass( "last" );
+                });
+            }, 500);
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+//		$('#text').click(function() {
+//
+//		$('head title').html('Chat instantanné');
+//
+//		new_message = 0;
+//
+//	});
+            $('#zone-de-chat').scroll(function(){setNotif()});
+            $(function(envoi) {
+                $('#submit').click(function() {
+                    idJoueur = $("#idJoueur").val();
+                    text = $("#text").val();
+                    $.ajax({
+                        url: '{{ path('add_chat', {'partie':partie.id}) }}?text='+text,
+                        success: function(data) {
+                            $("#text").val('');
+                        },
+                        error: function() {
+                            alert('La requête n\'a pas abouti');
+                        }
+                    });
+                });
+            });
+            $('body').keypress(function(event) {
+                if(event.keyCode===13) {
+                    $('#submit').click();
+                    setNotif();
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

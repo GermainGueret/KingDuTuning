@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="accueilzone">
+   <div class="center-accueil">
+    <h1>Classement des tuneurs</h1>
+<div class="tableau-content">
+    <table class="table">
+        {% for joueur in joueurs %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ joueur.username }} <span class="joueur-level"></span></td>
+                <td><span class="highscore">{{ joueur.joueurHighscore }}</span></td>
+                <td><a href="{{ path('creer_partie', {'joueur':joueur.id}) }}">defier</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+       </div>
+
+ <div class="center-text">
+    <a class="retour-lien" href="{{ path('joueur_homepage') }}">Retour</a>
+       </div>
+    </div>
+</div>
+{% endblock %}

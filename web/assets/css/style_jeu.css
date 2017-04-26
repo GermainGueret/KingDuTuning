@@ -1,0 +1,39 @@
+.carte{
+    position: relative;
+    background-color:#D98A01;
+    border: solid 2px black;
+    border-radius: 10px;
+    height: 140px;
+    width: 100px;
+    float: left;
+    margin: 10px;
+    padding: 5px;
+}
+
+.carte h3{
+    position: relative;
+    background-color: black;
+    color: #D98A01;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 20px;
+    width: 22px;
+    font-size: 14px;
+}
+
+.carte h5{
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    bottom: 0;
+}
+
+.carte p{
+    margin-top: 7px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
