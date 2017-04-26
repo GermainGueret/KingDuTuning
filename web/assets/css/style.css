@@ -18,7 +18,19 @@
         margin: 70px auto;
         transition: transform .3s ease-out;
     }
-    
+
+    .modal-main h2{
+        font-family: 'nhlflames', serif;
+        color: black;
+        font-size: 35px;
+    }
+
+    .modal-main h3{
+        font-family: 'nhlflames', serif;
+        color: black;
+        font-size: 30px;
+    }
+
     .modal-main .modal-title,
     .modal-defausse .modal-title{
         font-family: 'nhlflames', serif;

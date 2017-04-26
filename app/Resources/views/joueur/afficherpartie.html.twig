@@ -21,7 +21,7 @@
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title text-center" id="gridSystemModalLabel">{{ cartes2[carte].carteDescription }}</h2>
+        <h2 class="modal-title text-center" id="gridSystemModalLabel">Customisation : {{ cartes2[carte].carteFamille }}</h2>
     </div>
 
     <div class="modal-body">
@@ -30,16 +30,16 @@
 
             <div class="row body">
 
-                <div class="col-sm-offset-1 col-sm-5">
+                <div class="col-sm-offset-1 col-sm-4">
                     <img src="{{ asset('assets/img/cartes/'~cartes2[carte].carteImage~'.png') }}" width="80%"><br><br>
                 </div>
 
-                <div class="col-sm-5">
+                <div class="col-sm-6">
 
                     <br>
-                    Id : {{ cartes2[carte].id }} <br>
-                    Valeur : {{ cartes2[carte].carteValeur }} <br>
-                    Famille : {{ cartes2[carte].carteFamille }}
+                    <h3>{% if cartes2[carte].carteExtra %}Extra{% else %}{{ cartes2[carte].carteValeur }}{% endif %} - {{ cartes2[carte].carteDescription }}</h3>
+                    <br>
+                    <p>{{ cartes2[carte].carteTexte }}</p>
 
                     <input type="hidden" name="cartePoserId" value="{{ cartes2[carte].id }}">
                     <input type="hidden" name="cartePoserCategorie" value="{{ cartes2[carte].carteFamille.id }}">
