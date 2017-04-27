@@ -18,8 +18,10 @@
              <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><img class="profil" src="{{ asset('assets/img/profil.png') }}"/></li>
-                    <li><a class="nom_joueur" href="#">{% block menu_pseudo %}{% endblock %}</a></li>
+                    <li><a href="http://149.91.88.165/jeu/profile/" class="nom_joueur">{% block menu_pseudo %}{{ user.username }}{% endblock %}</a></li>
+                    <li><a href="http://149.91.88.165/jeu/parties/add" class="menu-nav">DEFIER DES TUNEURS</a></li>
+                    <li><a href="http://149.91.88.165/jeu/parties/" class="menu-nav">MES PARTIES</a></li>
+                    <li><a href="http://149.91.88.165/jeu/classement" class="menu-nav">CLASSEMENT</a></li>
                 </ul>
                 <div class="nav navbar-right">
                     <div class="dropdown">

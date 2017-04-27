@@ -95,7 +95,7 @@
 
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title text-center" id="gridSystemModalLabel">{{ cartes2[carte].carteDescription }}</h2>
+            <h2 class="modal-title text-center" id="gridSystemModalLabel">Customisation : {{ cartes2[carte].carteFamille }}</h2>
         </div>
 
         <div class="modal-body">
@@ -111,9 +111,9 @@
                     <div class="col-sm-5">
 
                         <br>
-                        Id : {{ cartes2[carte].id }} <br>
-                        Valeur : {{ cartes2[carte].carteValeur }} <br>
-                        Famille : {{ cartes2[carte].carteFamille }}
+                        <h3>{% if cartes2[carte].carteExtra %}Extra{% else %}{{ cartes2[carte].carteValeur }}{% endif %} - {{ cartes2[carte].carteDescription }}</h3>
+                        <br>
+                        <p>{{ cartes2[carte].carteTexte }}</p>
 
                         <input type="hidden" name="recupererId" value="{{ cartes2[carte].id }}">
                         <input type="hidden" name="recupererCategorieId" value="{{ cartes2[carte].carteFamille.id }}">
@@ -160,11 +160,22 @@
             <div class="container-fluid">
 
                 <br><br>
-                <h1 class="text-color-white text-center">La partie est finie !</h1>
-                <br><br>
+                <h1 class="over-message text-center">La partie est finie !</h1>
+                <br><br><br><br>
 
                 <div class="row">
-                    <div class="col-sm-4 text-center">
+                    
+
+                    <div class="col-sm-12 text-center">
+                        {% if variablePartie.scoreJ1 > variablePartie.scoreJ2 %}
+                            <h2 class="win-message text-color-white text-center">{{ partie.partieJ1.username }} gagne !</h2>
+                        {% elseif variablePartie.scoreJ2 > variablePartie.scoreJ1 %}
+                            <h2 class="win-message text-center">{{ partie.partieJ2.username }} gagne !</h2>
+                        {% elseif variablePartie.scoreJ2 == variablePartie.scoreJ1 %}
+                            <h2 class="win-message text-color-white text-center">{{ partie.partieJ1.username }} et {{ partie.partieJ2.username }} ont égalité !</h2>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-12 text-center">
                         <br>
                         {% if useractif.id == partie.partieJ1.id %}
                             <h4 class="text-color-white">{{ partie.partieJ1.username }} : {{ variablePartie.scoreJ1 }}</h4>
@@ -172,18 +183,7 @@
                             <h4 class="text-color-white">{{ partie.partieJ2.username }} : {{ variablePartie.scoreJ2 }}</h4>
                         {% endif %}
                     </div>
-
-                    <div class="col-sm-4 text-center">
-                        {% if variablePartie.scoreJ1 > variablePartie.scoreJ2 %}
-                            <h2 class="text-color-white text-center">{{ partie.partieJ1.username }} gagne !</h2>
-                        {% elseif variablePartie.scoreJ2 > variablePartie.scoreJ1 %}
-                            <h2 class="text-color-white text-center">{{ partie.partieJ2.username }} gagne !</h2>
-                        {% elseif variablePartie.scoreJ2 == variablePartie.scoreJ1 %}
-                            <h2 class="text-color-white text-center">{{ partie.partieJ1.username }} et {{ partie.partieJ2.username }} ont égalité !</h2>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-sm-4 text-center">
+                    <div class="col-sm-12 text-center">
                         <br>
                         {% if useractif.id == partie.partieJ1.id %}
                             <h4 class="text-color-white">{{ partie.partieJ2.username }} : {{ variablePartie.scoreJ2 }}</h4>
@@ -226,8 +226,8 @@
                     {% endif %}-->
 
                     <br>
-                    <h3 class="text-color-white text-center">Terrain de l'adversaire</h3>
-                    <br><br>
+                    <!--<h3 class="text-color-white text-center">Terrain de l'adversaire</h3>-->
+                    <br><br><br><br><br><br>
 
                     {% if variablePartie.adversaireTerrain %}
 
@@ -284,8 +284,9 @@
                 {# DEFAUSSE #}
                 <div class="row terrainzone">
 
-                    <h3 class="text-color-white text-center">Defausse</h3>
-                    <br><br>
+                    <!--<h3 class="text-color-white text-center">Defausse</h3>-->
+                    <br><br><br>
+
 
                     {% if variablePartie.partieDefausse %}
 
@@ -334,8 +335,7 @@
                 {# TERRAIN J1 #}
                 <div class="row terrainzone">
 
-                    <h3 class="text-color-white text-center">Mon terrain</h3>
-                    <br><br>
+                    <!--<h3 class="text-color-white text-center">Mon terrain</h3>--><br><br><br><br>
 
                     {#{{ dump(variablePartie.adversaireTerrain) }}#}
                     {% for cartesTerrain in variablePartie.monTerrain %}
@@ -435,16 +435,16 @@
                         {% if variablePartie.montour == true %}
                             {% if variablePartie.poseActive == true %}
                                 <form method="post">
-                                    <input type="submit" class="carte carte-off" name="piocher" value="{{ variablePartie.carteRestante }}" disabled/>
+                                    <input type="submit" class="carte carte-off" name="piocher" value="Pioche : {{ variablePartie.carteRestante }}" disabled/>
                                 </form>
                             {% elseif variablePartie.poseActive == false %}
                                 <form method="post">
-                                    <input type="submit" class="carte" name="piocher" value="{{ variablePartie.carteRestante }}"/>
+                                    <input type="submit" class="carte" name="piocher" value="Pioche : {{ variablePartie.carteRestante }}"/>
                                 </form>
                             {% endif %}
                         {% else %}
                             <form method="post">
-                                <input type="submit" class="carte carte-off" name="piocher" value="{{ variablePartie.carteRestante }}" disabled/>
+                                <input type="submit" class="carte carte-off" name="piocher" value="Pioche : {{ variablePartie.carteRestante }}" disabled/>
                             </form>
                         {% endif %}
 
@@ -592,7 +592,7 @@
             }
         }
         function setNotif(){
-            $('head title').html('Chat instantanné');
+            $('head title').html('Jeu');
             new_message = 0;
         }
         var nb_message = null ;

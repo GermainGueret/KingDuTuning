@@ -3,6 +3,69 @@
     font-family: nhlflames;
     src: url(../fonts/nhlflames.ttf);
 }
+body {
+    overflow: hidden;
+}
+
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* NAVBAR */
+.menu-nav {
+    color: white !important;
+    font-size: 2rem;
+    font-family: 'nhlflames';
+    text-align: center;
+}
+.navbar-right {
+    margin-top: 10px !important;
+}
+.nom_joueur {
+    color: darkred !important;
+    text-shadow: 1px 1px 1px white;
+    font-family: 'nhlflames';
+    font-size: 2.5rem;
+}
+.dropdown-menu {
+    background-image: url(../img/background_adversaire.png);
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 0;
+}
+.dropdown-menu .divider {
+        background-color: #666;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    background-color: rgba(255,255,255,0.2) !important;
+}
+.navbar-default {
+    background-image: url(../img/background_adversaire.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.btn-default {
+    background-color: transparent !important;
+    color: white !important;
+    border: none !important;
+}
+.glyphicon-menu-hamburger::before {
+    
+    width: 100%;
+}
+
 
 body {
     overflow-y: hidden;
@@ -113,7 +176,7 @@ body {
 .form h2{
     margin-top: 10px;
     margin-bottom: 10px;
-    color: #E9D449;
+    color: darkred;
     font-weight: 800;
     font-size: 26px;
 }
@@ -194,3 +257,11 @@ a:hover {
 .noscroll {
     overflow-y: hidden;
 }
+.error-message {
+    text-align: center;
+    color: red;
+    font-size: 3rem;
+    font-family: 'nhlflames';
+    background-color: rgba(0,0,0,0.8);
+}
+    

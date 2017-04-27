@@ -5,23 +5,22 @@
    <div class="center-accueil">
     <h1>MES PARTIES EN COURS</h1>
     <div class="tableau-content">
-        <ul>
             {% for partie in user.parties %}
             {% for partie in partie %}
 
                 {% if user.id == partie.partieJ1.id %}
-                    <li><span class="id-partie">{{ partie.id }}</span> - <a href="{{ path('afficher_partie', {'id':partie.id}) }}">Partie avec {{ partie.partieJ2.username }}</a></li>
+                    <li><a href="{{ path('afficher_partie', {'id':partie.id}) }}">Partie avec {{ partie.partieJ2.username }}</a></li>
                 {% elseif user.id == partie.partieJ2.id %}
-                    <li><span class="id-partie">{{ partie.id }}</span> - <a href="{{ path('afficher_partie', {'id':partie.id}) }}">Partie avec {{ partie.partieJ1.username }}</a></li>
+                    <li><a href="{{ path('afficher_partie', {'id':partie.id}) }}">Partie avec {{ partie.partieJ1.username }}</a></li>
                 {% endif %}
 
             {% else %}
 
-                Aucune partie en cours. <a href="{{ path('joueur_parties_add') }}">Créer une partie</a>
+            {% endfor %}
+            {% endfor %}
 
-            {% endfor %}
-            {% endfor %}
-        </ul>
+        <br><br>
+        <li class="text-center"><a class="retour-lien text-color-white" href="{{ path('joueur_parties_add') }}">Creer une partie</a></li>
     </div>
 
 

@@ -216,3 +216,10 @@ easy_admin:
 
         Chat:
             class: AppBundle\Entity\Chat
+            label: 'Chat'
+            list:
+                actions:
+                    - { name: 'show', icon: 'search', label: '' }
+                    - { name: 'edit', icon: 'pencil', label: '' }
+                    - { name: 'delete', icon: 'times', label: '' }
+                title: "Chats"
